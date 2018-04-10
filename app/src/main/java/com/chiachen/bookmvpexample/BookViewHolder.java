@@ -4,11 +4,14 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.chiachen.bookmvpexample.data.Book;
+import com.chiachen.bookmvpexample.mvp.BookListContract;
+
 /**
  * Created by jianjiacheng on 10/04/2018.
  */
 
-class BookViewHolder extends RecyclerView.ViewHolder {
+public class BookViewHolder extends RecyclerView.ViewHolder implements BookListContract.BookItemView{
 
     private TextView type;
     private TextView price;
@@ -31,5 +34,12 @@ class BookViewHolder extends RecyclerView.ViewHolder {
 
     public TextView getAmount() {
         return amount;
+    }
+
+    @Override
+    public void bindData(Book book) {
+        getAmount().setText(String.valueOf(book.getAmount()));
+        getPrice().setText(String.valueOf(book.getPrice()));
+        getType().setText(book.getType());
     }
 }

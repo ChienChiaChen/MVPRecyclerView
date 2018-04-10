@@ -5,9 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import com.chiachen.bookmvpexample.data.Book;
-
-import java.util.List;
+import com.chiachen.bookmvpexample.mvp.BookListContract;
 
 /**
  * Created by jianjiacheng on 10/04/2018.
@@ -15,10 +13,10 @@ import java.util.List;
 
 class RvBookListAdapter extends RecyclerView.Adapter {
 
-    private List<Book> mBooks;
+    private BookListContract.Presenter mPresenter;
 
-    public RvBookListAdapter(List<Book> books) {
-        mBooks = books;
+    public RvBookListAdapter(BookListContract.Presenter presenter) {
+        mPresenter = presenter;
     }
 
     @NonNull
@@ -29,14 +27,11 @@ class RvBookListAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Book tempBook = mBooks.get(position);
-        ((BookViewHolder) holder).getAmount().setText(String.valueOf(tempBook.getAmount()));
-        ((BookViewHolder) holder).getPrice().setText(String.valueOf(tempBook.getPrice()));
-        ((BookViewHolder) holder).getType().setText(tempBook.getType());
+        mPresenter.onBindViewHolder(((BookViewHolder) holder), position);
     }
 
     @Override
     public int getItemCount() {
-        return mBooks.size();
+        return mPresenter.getBookListCount();
     }
 }

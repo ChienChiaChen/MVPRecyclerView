@@ -42,6 +42,6 @@ public class MainActivity extends AppCompatActivity implements BookListContract.
     public void showBooks(List<Book> books) {
         ((RecyclerView) findViewById(R.id.rvBooks)).hasFixedSize();
         ((RecyclerView) findViewById(R.id.rvBooks)).setLayoutManager(new LinearLayoutManager(this));
-        ((RecyclerView) findViewById(R.id.rvBooks)).setAdapter(new RvBookListAdapter(books));
+        ((RecyclerView) findViewById(R.id.rvBooks)).setAdapter(new RvBookListAdapter(mPresenter));
     }
 }
